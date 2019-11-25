@@ -7,3 +7,4 @@ variable "instance_type" {
   default     = "t2.large"
   description = "AWS instance type"
 }
+

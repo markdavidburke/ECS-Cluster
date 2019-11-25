@@ -1,7 +1,7 @@
 resource "aws_security_group" "lb_sg" {
   description = "controls access to the application ELB"
 
-  vpc_id = "${aws_vpc.demo-tf.id}"
+  vpc_id = aws_vpc.demo-tf.id
   name   = "demo-ELB"
 
   ingress {
@@ -31,7 +31,7 @@ resource "aws_security_group" "lb_sg" {
 
 resource "aws_security_group" "instance_sg" {
   description = "controls direct access to application instances"
-  vpc_id      = "${aws_vpc.demo-tf.id}"
+  vpc_id      = aws_vpc.demo-tf.id
   name        = "application-instances-sg"
 
   ingress {
@@ -41,7 +41,7 @@ resource "aws_security_group" "instance_sg" {
     description = "Access from ALB"
 
     security_groups = [
-      "${aws_security_group.lb_sg.id}",
+      aws_security_group.lb_sg.id,
     ]
   }
 
@@ -52,3 +52,4 @@ resource "aws_security_group" "instance_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
