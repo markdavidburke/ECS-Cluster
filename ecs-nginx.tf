@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "nginx" {
     "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/ecs-demo/nginx",
-        "awslogs-region": "us-east-1",
+        "awslogs-region": "eu-west-2",
         "awslogs-stream-prefix": "ecs"
       }
     }

@@ -4,9 +4,9 @@ data "aws_region" "current" {}
 
 terraform {
   backend "s3" {
-    bucket = "bharath-test-terraform-remote-state"
+    bucket = "bharaths-test-terraform-remote-state"
     key = "test"
-    dynamodb_table = "bharath-test-terraform-remote-state-locks"
-    region = "us-east-1"
+    dynamodb_table = "bharaths-test-terraform-remote-state-locks"
+    region = "eu-west-2"
   }
 }
