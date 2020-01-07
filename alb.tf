@@ -43,4 +43,3 @@ resource "aws_alb_target_group" "nginx" {
     matcher             = "200,301,302"
   }
 }
-
