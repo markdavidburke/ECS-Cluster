@@ -15,7 +15,7 @@ data "aws_ami" "latest_ecs" {
   owners = ["591542846629"] # AWS
 }
 
-/*
+
 # User data for ECS cluster
 data "template_file" "ecs-cluster" {
   template = file("ecs-cluster.tpl")
@@ -25,4 +25,4 @@ data "template_file" "ecs-cluster" {
   }
 }
 
-*/
+
