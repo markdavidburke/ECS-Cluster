@@ -19,7 +19,7 @@ resource "aws_subnet" "demo-public-1" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.10.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "us-east-1a"
 
   tags = {
     Name = "demo-public-1"
@@ -30,7 +30,7 @@ resource "aws_subnet" "demo-public-2" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.20.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2b"
+  availability_zone       = "us-east-1b"
 
   tags = {
     Name = "demo-public-2"
@@ -41,7 +41,7 @@ resource "aws_subnet" "demo-public-3" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.30.0/24"
   map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-2c"
+  availability_zone       = "us-east-1c"
 
   tags = {
     Name = "demo-public-3"
@@ -52,7 +52,7 @@ resource "aws_subnet" "demo-private-1" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.40.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2a"
+  availability_zone       = "us-east-1a"
 
   tags = {
     Name = "demo-private-1"
@@ -63,7 +63,7 @@ resource "aws_subnet" "demo-private-2" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.50.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2b"
+  availability_zone       = "us-east-1b"
 
   tags = {
     Name = "demo-private-2"
@@ -74,7 +74,7 @@ resource "aws_subnet" "demo-private-3" {
   vpc_id                  = aws_vpc.demo-tf.id
   cidr_block              = "172.21.60.0/24"
   map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-2c"
+  availability_zone       = "us-east-1c"
 
   tags = {
     Name = "demo-private-3"
