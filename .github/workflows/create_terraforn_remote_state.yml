@@ -1,4 +1,4 @@
-name: deploy ecs cluster
+name: create remote state in s3
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
     paths:
       - 'remote_state/**'
 jobs:
-  deploy-ecs-cluster-service:
+  deploy-tf-remote-state:
     runs-on: ubuntu-latest
     steps:
 
@@ -15,7 +15,6 @@ jobs:
 
       - name : Get the latest terraform version
         run: wget `echo "https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip"`  && unzip *.zip && sudo mv terraform /usr/bin/terraform
-
 
       - name: Init and plan and apply terraform to create remote state in s3 and locking in dynamodb
         run: /usr/bin/terraform init -input=false  && /usr/bin/terraform plan -input=false && /usr/bin/terraform apply -input=false  -auto-approve
