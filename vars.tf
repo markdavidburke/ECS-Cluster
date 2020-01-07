@@ -7,4 +7,3 @@ variable "instance_type" {
   default     = "t3.medium"
   description = "AWS instance type"
 }
-
