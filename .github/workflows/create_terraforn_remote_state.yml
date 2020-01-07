@@ -4,8 +4,7 @@ on:
     branches:
       - master
     paths:
-      - '*.tf'
-      - '!remote_state/**.tf'
+      - 'remote_state/**'
 jobs:
   deploy-ecs-cluster-service:
     runs-on: ubuntu-latest
@@ -21,15 +20,6 @@ jobs:
       - name: Init and plan and apply terraform to create remote state in s3 and locking in dynamodb
         run: /usr/bin/terraform init -input=false  && /usr/bin/terraform plan -input=false && /usr/bin/terraform apply -input=false  -auto-approve
         working-directory: ./remote_state
-        env:
-          TF_IN_AUTOMATION: true
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_KEY }}
-
-
-      - name: Init and plan and apply terraform
-        run: /usr/bin/terraform init -input=false  && /usr/bin/terraform plan -input=false  && /usr/bin/terraform apply -input=false -auto-approve
-        working-directory: .
         env:
           TF_IN_AUTOMATION: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
