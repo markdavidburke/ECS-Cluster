@@ -11,6 +11,7 @@ resource "aws_autoscaling_group" "demo-cluster" {
   max_size                  = "10"
   desired_capacity          = "2"
   launch_configuration      = aws_launch_configuration.demo-cluster-lc.name
+  health_check_type         = "ELB"
   health_check_grace_period = 120
   default_cooldown          = 30
   termination_policies      = ["OldestInstance"]
@@ -48,7 +49,6 @@ resource "aws_launch_configuration" "demo-cluster-lc" {
   iam_instance_profile        = aws_iam_instance_profile.ecs-ec2-role.id
   user_data                   = data.template_file.ecs-cluster.rendered
   associate_public_ip_address = true
-
   lifecycle {
     create_before_destroy = true
   }

@@ -1,0 +1,26 @@
+name: deploy ecs cluster
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '*.tf'
+      - '!remote_state/**.tf'
+jobs:
+  deploy-ecs-cluster-service:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout public repo
+        uses: actions/checkout@master
+
+      - name : Get the latest terraform version
+        run: wget `echo "https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_linux_amd64.zip"`  && unzip *.zip && sudo mv terraform /usr/bin/terraform
+
+      - name: Init and plan and apply terraform
+        run: /usr/bin/terraform init -input=false  && /usr/bin/terraform plan -input=false  && /usr/bin/terraform apply -input=false -auto-approve
+        working-directory: .
+        env:
+          TF_IN_AUTOMATION: true
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_KEY }}
